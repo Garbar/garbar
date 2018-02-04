@@ -1,0 +1,10 @@
+<h1>Add movie</h1>
+<%= form_tag '/movies/new', method: "get" do %>
+  <%= label_tag :title %>
+  <%= text_field_tag :title %>
+  <h4>Or IMDB id(example: tt0364845)</h4>
+  </hr>
+  <%= label_tag :imdb_id %>
+  <%= text_field_tag :imdb_id %>
+  <%= submit_tag "Search!" %>
+<% end %>
