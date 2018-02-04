@@ -5,3 +5,5 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+imdb_list = %w(tt2487938 tt2819924 tt1936532 tt1129398 tt2294189)

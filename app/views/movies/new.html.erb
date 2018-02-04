@@ -1,0 +1,20 @@
+<%= debug(params) if Rails.env.development? %>
+<%= p @parser %>
+<% if @parser[:error] %>
+<h3 class="errors">Sorry, but your data not relevant. Try again.</h6>
+<% else %>
+<%= form_with scope: :movie, url: movies_path, local: true do |form| %>
+  <p>
+    <%= form.label :title %><br>
+    <%= form.text_field :title, :value => @parser[:title] %>
+  </p> 
+  <p>
+    <%= form.label :description %><br>
+    <%= form.text_area :description, :value => @parser[:plot] %>
+  </p>
+  <%= form.hidden_field :imdb_id, value: params['imdb_id'] %>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
+<% end %>
