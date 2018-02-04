@@ -4,6 +4,10 @@ class CreateMovies < ActiveRecord::Migration[5.1]
       t.string :title
       t.string :imdb_id
       t.text :description
+      t.datetime :released_at
+      t.integer :status
+      t.text :actors
+      t.string :years
 
       t.timestamps
     end
