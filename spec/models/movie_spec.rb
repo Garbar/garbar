@@ -14,11 +14,8 @@
 #  updated_at  :datetime         not null
 #
 
-class Movie < ApplicationRecord
-  # TODO Add enum for status
-  has_one :note
-  has_many :country_movies
-  has_many :countries, through: :country_movies
-  has_many :genre_movies
-  has_many :genres, through: :genre_movies
+require 'rails_helper'
+
+RSpec.describe Movie, type: :model do
+  pending "add some examples to (or delete) #{__FILE__}"
 end

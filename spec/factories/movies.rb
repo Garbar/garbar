@@ -14,11 +14,14 @@
 #  updated_at  :datetime         not null
 #
 
-class Movie < ApplicationRecord
-  # TODO Add enum for status
-  has_one :note
-  has_many :country_movies
-  has_many :countries, through: :country_movies
-  has_many :genre_movies
-  has_many :genres, through: :genre_movies
+FactoryBot.define do
+  factory :movie do
+    title "MyString"
+    imdb_id "MyString"
+    description "MyText"
+    released_at "2018-02-04 10:28:42"
+    status 1
+    actors "MyText"
+    years "MyString"
+  end
 end

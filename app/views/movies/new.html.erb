@@ -1,20 +1,33 @@
-<%= debug(params) if Rails.env.development? %>
 <%= p @parser %>
 <% if @parser[:error] %>
-<h3 class="errors">Sorry, but your data not relevant. Try again.</h6>
+  <h3 class="errors">Sorry, but your data not relevant. Try again.</h6>
 <% else %>
-<%= form_with scope: :movie, url: movies_path, local: true do |form| %>
-  <p>
-    <%= form.label :title %><br>
-    <%= form.text_field :title, :value => @parser[:title] %>
-  </p> 
-  <p>
-    <%= form.label :description %><br>
-    <%= form.text_area :description, :value => @parser[:plot] %>
-  </p>
-  <%= form.hidden_field :imdb_id, value: params['imdb_id'] %>
-  <p>
-    <%= form.submit %>
-  </p>
+  <%= form_with scope: :movie, url: movies_path, local: true do |form| %>
+    <p>
+      <%= form.label :title %><br>
+      <%= form.text_field :title, :value => @parser[:title] %>
+    </p> 
+    <p>
+      <%= form.label :years %><br>
+      <%= form.text_field :years, :value => @parser[:year] %>
+    </p> 
+    <p>
+      <%= form.label :actors %><br>
+      <%= form.text_area :actors, :value => @parser[:actors] %>
+    </p>
+        <p>
+      <%= form.label :description %><br>
+      <%= form.text_area :description, :value => @parser[:plot] %>
+    </p>
+    <p>
+      <%= form.label :imdb_id %><br>
+      <%= form.text_area :imdb_id, :value => @parser[:imdb_id] %>
+    </p>
+    <p>
+      <%= form.submit %>
+      <%= link_to 'Try again', add_movies_path %>
+    </p>
+  <% end %>
 <% end %>
-<% end %>
+
+<%= debug(params) if Rails.env.development? %>

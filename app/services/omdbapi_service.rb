@@ -51,10 +51,10 @@ class OmdbapiService
       movie = {
         title: res['Title'],
         year: res['Year'],
-        genres: res['Genre'],
+        genres: CreateGenre.new(res['Genre']).call,
         actors: res['Actors'],
         plot: res['Plot'],
-        country: res['Country'],
+        country: CreateCountry.new(res['Country']).call,
         imdb_id: res['imdbID']
       }
     end
