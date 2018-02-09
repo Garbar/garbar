@@ -16,9 +16,9 @@
 
 class Movie < ApplicationRecord
   # TODO Add enum for status
-  has_one :note
-  has_many :country_movies
+  has_one :note, dependent: :destroy
+  has_many :country_movies, dependent: :destroy
   has_many :countries, through: :country_movies
-  has_many :genre_movies
+  has_many :genre_movies, dependent: :destroy
   has_many :genres, through: :genre_movies
 end

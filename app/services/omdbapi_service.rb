@@ -6,7 +6,7 @@ class OmdbapiService
 
   def initialize(params)
     @title = params[:title]
-    @year = params[:year]
+    @year = params[:years]
     @imdb_id = params[:imdb_id]
   end
 
