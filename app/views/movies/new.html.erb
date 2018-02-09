@@ -1,33 +1,41 @@
 <%= p @parser %>
+# TODO add selects and checks errors
 <% if @parser[:error] %>
   <h3 class="errors">Sorry, but your data not relevant. Try again.</h6>
 <% else %>
-  <%= form_with scope: :movie, url: movies_path, local: true do |form| %>
-    <p>
-      <%= form.label :title %><br>
-      <%= form.text_field :title, :value => @parser[:title] %>
-    </p> 
-    <p>
-      <%= form.label :years %><br>
-      <%= form.text_field :years, :value => @parser[:year] %>
-    </p> 
-    <p>
-      <%= form.label :actors %><br>
-      <%= form.text_area :actors, :value => @parser[:actors] %>
-    </p>
-        <p>
-      <%= form.label :description %><br>
-      <%= form.text_area :description, :value => @parser[:plot] %>
-    </p>
-    <p>
-      <%= form.label :imdb_id %><br>
-      <%= form.text_area :imdb_id, :value => @parser[:imdb_id] %>
-    </p>
-    <p>
-      <%= form.submit %>
-      <%= link_to 'Try again', add_movies_path %>
-    </p>
-  <% end %>
+ <%= form_with scope: :movie, url: movies_path, local: true do |form| %>
+  <div class="text-center mb-4">
+    <h1 class="h3 mb-3 font-weight-normal">Add TV show</h1>
+  </div>
+<fieldset class="form-group">
+<label for="imdb_id">Imdb Id</label>
+ <%= form.text_field :imdb_id, value: @parser[:imdb_id], class: 'form-control' %>
+</fieldset>
+<select class="custom-select custom-select-lg mb-3" multiple>
+  <option selected>Open this select menu</option>
+  <option value="1">One</option>
+  <option value="2">Two</option>
+  <option value="3">Three</option>
+</select>
+<fieldset class="form-group">
+<label for="first_name">Title</label>
+<%= form.text_field(:title, value: @parser[:title], class: 'form-control') %>
+</fieldset>
+<fieldset class="form-group">
+<label for="last_name">Years of show</label>
+<%= form.text_field :years, value: @parser[:year], class: 'form-control' %>
+</fieldset>
+<fieldset class="form-group">
+<label for="last_name">Actors</label>
+<%= form.text_area :actors, value: @parser[:actors], class: 'form-control' %>
+</fieldset>
+<fieldset class="form-group">
+<label for="last_name">Description</label>
+<%= form.text_area :description, value: @parser[:plot], rows: 5, class: 'form-control' %>
+</fieldset>
+<button type="submit" class="btn btn-lg btn-primary btn-block">Save TV show</button>
+<h4>OR</h4>
+<%= link_to 'Try again', add_movies_path, class: 'btn btn-primary btn-lg btn-danger' %>
 <% end %>
-
+<% end %>
 <%= debug(params) if Rails.env.development? %>

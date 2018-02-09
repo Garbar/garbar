@@ -1,6 +1,12 @@
 class MoviesController < ApplicationController
   def index
-    
+    @movies = Movie.includes(:genres, :countries)
+    # json_response(@movies)
+    # render json: @movies
+    respond_to do |format|
+      format.html
+      format.json { render json: @movies.to_json(:include =>[ :genres, :countries]) }
+    end   
   end
 
   def new
@@ -24,5 +30,9 @@ class MoviesController < ApplicationController
   
   def movie_params
     params.require(:movie).permit(:title, :description, :imdb_id)
+  end
+
+  def json_response(object, status = :ok)
+    render json: object, status: status
   end
 end
