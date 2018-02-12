@@ -1,7 +1,7 @@
 <template>
-      <div class="jumbotron">
-        <p class="lead">{{ message }}</p>
-      </div>
+  <div class="jumbotron">
+    <p class="lead">{{ message }}</p>
+  </div>
 </template>
 
 <script>
