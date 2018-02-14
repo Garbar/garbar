@@ -1,21 +1,98 @@
 <template>
-  <div class="jumbotron">
-    <p class="lead">{{ message }}</p>
-  </div>
+<div>
+  <el-table
+    :data="items"
+    border 
+    :default-sort="{prop: 'name', order: 'descending'}"
+    style="width: 100%">
+    <el-table-column type="expand">
+      <template slot-scope="props">
+        <p>Username: {{ props.row.username }}</p>
+        <p>City: {{ props.row.address.city }}</p>
+        <p>Address: {{ props.row.address.street }}</p>
+        <p>Zip: {{ props.row.address.zipcode}}</p>
+      </template>
+    </el-table-column>
+    <el-table-column
+      type="index">
+    </el-table-column>
+    <el-table-column
+      prop="email"
+      sortable
+      label="Email" >
+      </el-table-column>
+    <el-table-column
+        prop="name"
+        sortable
+        label="Name"
+    >
+      </el-table-column>
+      <el-table-column
+        prop="address.street"
+        label="Address">
+      </el-table-column>
+      <el-table-column
+        prop="company"
+        :formatter="formatter"
+        label="Company">
+      </el-table-column>
+      <el-table-column
+        fixed="right"
+        label="Operations"
+        width="120">
+        <template slot-scope="scope">
+          <el-button @click="handleClick" type="text" size="small">Detail</el-button>
+          <el-button @click="handleEdit(scope.$index, scope.row)" type="text" size="small">Edit</el-button>
+          <el-button
+            @click.native.prevent="deleteRow(scope.$index, items)"
+            type="text"
+            size="small">
+            Remove
+          </el-button>
+        </template>
+      </el-table-column>
+  </el-table>
+  <div class="block">
+  <el-pagination
+    layout="prev, pager, next"
+    :total="50">
+  </el-pagination>
+</div>
+</div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      message: 'Hello Vue'
-    };
-  }
-};
-</script>
+  <script>
+  import axios from 'axios';
 
-<style scoped>
-  #app {
-    padding-top: 5.0rem;
-  }
-</style>
+    export default {
+      methods: {
+        handleClick() {
+          console.log('click');
+        },
+        handleEdit(index, row) {
+        console.log(index, row);
+        },
+        deleteRow(index, rows) {
+          rows.splice(index, 1);
+        },
+        formatter(row, column) {
+          return row.company.name+" "+row.company.catchPhrase;
+        }
+      },
+      data() {
+        return {
+          items: []
+        }
+      },
+      created() {
+        axios.get(`http://jsonplaceholder.typicode.com/users`)
+        .then(response => {
+          // JSON responses are automatically parsed.
+          this.items = response.data
+        })
+        .catch(e => {
+          this.errors.push(e)
+        })
+        }
+    }
+  </script>
