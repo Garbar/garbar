@@ -7,10 +7,7 @@
     style="width: 100%">
     <el-table-column type="expand">
       <template slot-scope="props">
-        <p>Username: {{ props.row.username }}</p>
-        <p>City: {{ props.row.address.city }}</p>
-        <p>Address: {{ props.row.address.street }}</p>
-        <p>Zip: {{ props.row.address.zipcode}}</p>
+        <p>Username: {{ props.row.body }}</p>
       </template>
     </el-table-column>
     <el-table-column
@@ -32,11 +29,6 @@
         label="Address">
       </el-table-column>
       <el-table-column
-        prop="company"
-        :formatter="formatter"
-        label="Company">
-      </el-table-column>
-      <el-table-column
         fixed="right"
         label="Operations"
         width="120">
@@ -53,10 +45,14 @@
       </el-table-column>
   </el-table>
   <div class="block">
-  <el-pagination
-    layout="prev, pager, next"
-    :total="50">
-  </el-pagination>
+   <el-pagination
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+      :current-page.sync="currentPage1"
+      :page-size="10"
+      layout="total, prev, pager, next"
+      :total="100">
+    </el-pagination>
 </div>
 </div>
 </template>
@@ -77,17 +73,32 @@
         },
         formatter(row, column) {
           return row.company.name+" "+row.company.catchPhrase;
-        }
+        },
+      handleSizeChange(val) {
+        console.log(`${val} items per page`);
       },
+      handleCurrentChange(val) {
+        console.log(`current page: ${val}`);
+      }
+    },
       data() {
         return {
-          items: []
+          items: [],
+          currentPage1: 5,
+          itemsSize: null,
+          errors: []
         }
       },
       created() {
-        axios.get(`http://jsonplaceholder.typicode.com/users`)
+        axios.get(`http://jsonplaceholder.typicode.com/comments`)
         .then(response => {
           // JSON responses are automatically parsed.
+              // console.log(response.status);
+              // console.log(response.statusText);
+              // console.log(response.headers);
+              // console.log(response.config);
+          console.log(response.data.length);
+          this.itemsSize = response.data.length
           this.items = response.data
         })
         .catch(e => {
