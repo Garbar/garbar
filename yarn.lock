@@ -1821,9 +1821,21 @@ ee-first@1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/ee-first/-/ee-first-1.1.1.tgz#590c61156b0ae2f4f0255732a158b266bc56b21d"
 
+el-table-wrapper@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/el-table-wrapper/-/el-table-wrapper-2.0.3.tgz#7d4bbcb30b8b173da3ffab2c4e073ec862c50f95"
+  dependencies:
+    lodash.debounce "^4.0.8"
+
 electron-to-chromium@^1.2.7, electron-to-chromium@^1.3.30:
   version "1.3.31"
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.31.tgz#00d832cba9fe2358652b0c48a8816c8e3a037e9f"
+
+element-table-wrapper@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/element-table-wrapper/-/element-table-wrapper-2.0.2.tgz#23acd50ea7a34b95454557ae182fdb84031f62d6"
+  dependencies:
+    lodash.debounce "^4.0.8"
 
 element-ui@^2.2.0:
   version "2.2.0"
@@ -3278,6 +3290,10 @@ lodash.camelcase@^4.3.0:
 lodash.clonedeep@^4.3.2:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.clonedeep/-/lodash.clonedeep-4.5.0.tgz#e23f3f9c4f8fbdde872529c1071857a086e5ccef"
+
+lodash.debounce@^4.0.8:
+  version "4.0.8"
+  resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
 
 lodash.memoize@^4.1.2:
   version "4.1.2"
