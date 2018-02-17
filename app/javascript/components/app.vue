@@ -1,19 +1,23 @@
 <template>
   <el-table-wrapper border="" stripe="" :data="items" :columns="columns" :pagination="pagination" :show-custom-header="true">
-    <template slot-scope="scope" slot="operate-slot">
-      <el-button @click="handleEdit(scope.$index, scope.row)" type="text" size="small">Edit</el-button>
-      <el-button @click="handleClick" type="text">Detail</el-button>
-    </template>
       <template slot-scope="props" slot="details-slot">
-        <p>Username: {{ props.row.name }}</p>
+        <p class="details"><strong>Years:</strong> {{ props.row.years }}</p>
+        <p class="details"><strong>Actors:</strong> {{ props.row.actors }}</p>
       </template>
-     <template slot-scope="scope" slot="address-slot">
-       <el-tag
-        v-for="tag in scope.row.address"
-        :key="tag.city">
-        {{tag.city}}
-      </el-tag>
-    </template>
+      <template slot-scope="scope" slot="genres-slot">
+        <el-tag
+          v-for="tag in scope.row.genres"
+          :key="tag.title">
+          {{tag.title}}
+        </el-tag>
+      </template>
+      <template slot-scope="scope" slot="countries-slot">
+        <el-tag
+          v-for="tag in scope.row.countries"
+          :key="tag.title">
+          {{tag.title}}
+        </el-tag>
+      </template>
   </el-table-wrapper>
 </template>
 
@@ -24,48 +28,46 @@
     data() {
       const columns = [
         { type: "expand",
-        scopedSlot: 'details-slot' },
-        {
-        label: "Title",
-        prop: "name",
-        searchable: true,
-        sortable: true
-      }, {
-        label: "Username",
-        prop: "username",
-      },
-      {
-        label: "Email",
-        prop: "email",
-        searchable: true,
-        sortable: true
-      },
-      {
-        label: "Address",
-        prop: "address",
-        searchable: true,
-        sortable: true,
-        scopedSlot: 'address-slot'
-      },
-      { label: 'Code',
-      scopedSlot: 'operate-slot'
-      }
-
+          label: "Details",
+          scopedSlot: 'details-slot' },
+        { label: "IMDB ID",
+          prop: "imdb_id",
+          width: 150,
+          searchable: true,
+          sortable: true
+        },
+        { label: "Title",
+          prop: "title",
+          width: 200,
+          searchable: true,
+          sortable: true
+        },
+        { label: "Description",
+          prop: "description"
+        },
+        { label: "Genres",
+          prop: "genres",
+          width: 200,
+          searchable: true,
+          scopedSlot: 'genres-slot'
+        },
+        { label: "Countries",
+          prop: "countries",
+          width: 200,
+          searchable: true,
+          scopedSlot: 'countries-slot'
+        },
+        { label: "Status",
+          prop: "status",
+          width: 150
+        }
       ];
 
       const items = [];
-      const data = [];
-      for (let i = 0; i < 96; i++) {
-        data.push({
-          key: i,
-          name: `Edward King ${i}`,
-          age: 32,
-          address: `London, Park Lane no. ${i}`
-        });
-      }
+      const errors = [];
 
       return {
-        data,
+        errors,
         items,
         columns,
         pagination: {
@@ -77,20 +79,8 @@
         }
       };
     },
-      methods: {
-        handleClick() {
-          console.log('click');
-        },
-        handleEdit(index, row) {
-        console.log(index, row);
-        },
-        deleteRow(index, rows) {
-          rows.splice(index, 1);
-        },
-        formatter(row, column) {
-          console.log(row);
-          return row.address.city+" "+row.address.street;
-        }
+    methods: {
+
     },
     onPageSizeChange(size) {
       console.log('onPageSizeChange, size:', size)
@@ -99,15 +89,9 @@
       console.log('onPageCurrentChange, current page:', current)
     },
     created() {
-      axios.get(`http://jsonplaceholder.typicode.com/users`)
+      axios.get(`/movies.json`)
       .then(response => {
-        // JSON responses are automatically parsed.
-            // console.log(response.status);
-            // console.log(response.statusText);
-            // console.log(response.headers);
-            // console.log(response.config);
-        console.log(response.data.length);
-        this.itemsSize = response.data.length
+        console.log(response.data);
         this.items = response.data
       })
       .catch(e => {
@@ -116,3 +100,8 @@
     }
   };
 </script>
+<style scoped>
+  .details {
+    font-weight: bold;
+  }
+</style>

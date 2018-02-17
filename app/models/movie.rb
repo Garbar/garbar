@@ -15,7 +15,8 @@
 #
 
 class Movie < ApplicationRecord
-  # TODO Add enum for status
+  enum status: [:na, :on_air, :dead, :pause] 
+
   has_one :note, dependent: :destroy
   has_many :country_movies, dependent: :destroy
   has_many :countries, through: :country_movies
