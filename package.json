@@ -9,6 +9,8 @@
     "el-table-wrapper": "^2.0.3",
     "element-table-wrapper": "^2.0.2",
     "element-ui": "^2.2.0",
+    "jquery": "^3.3.1",
+    "selectize": "^0.12.4",
     "vue": "^2.5.13",
     "vue-loader": "^13.7.0",
     "vue-template-compiler": "^2.5.13"

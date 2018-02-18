@@ -11,4 +11,6 @@
 // about supported directives.
 //
 //= require rails-ujs
+//= require jquery/dist/jquery
+//= require selectize/dist/js/standalone/selectize
 //= require_tree .
