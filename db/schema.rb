@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180204083002) do
+ActiveRecord::Schema.define(version: 20180222064133) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 20180204083002) do
   end
 
   create_table "notes", force: :cascade do |t|
-    t.integer "bechdel_test"
+    t.integer "bechdel"
     t.text "description"
     t.bigint "movie_id"
     t.text "characters"

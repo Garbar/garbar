@@ -13,4 +13,5 @@
 //= require rails-ujs
 //= require jquery/dist/jquery
 //= require selectize/dist/js/standalone/selectize
+//= require bootstrap-markdown-bundle
 //= require_tree .

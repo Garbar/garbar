@@ -3,7 +3,7 @@
 # Table name: notes
 #
 #  id           :integer          not null, primary key
-#  bechdel_test :integer
+#  bechdel :integer
 #  description  :text
 #  movie_id     :integer
 #  characters   :text
@@ -13,4 +13,5 @@
 
 class Note < ApplicationRecord
   belongs_to :movie
+  enum bechdel: [:indefined, :yes, :no]
 end

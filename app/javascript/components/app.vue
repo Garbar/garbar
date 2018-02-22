@@ -3,6 +3,7 @@
       <template slot-scope="props" slot="details-slot">
         <p class="details"><strong>Years:</strong> {{ props.row.years }}</p>
         <p class="details"><strong>Actors:</strong> {{ props.row.actors }}</p>
+        <p class="details"><strong>My notes:</strong><vue-markdown> {{ props.row.note.description }}</vue-markdown></p>
       </template>
       <template slot-scope="scope" slot="genres-slot">
         <el-tag
@@ -23,8 +24,12 @@
 
 <script>
   import axios from 'axios';
+  import VueMarkdown from 'vue-markdown';
 
   export default {
+    components: {
+      'vue-markdown': VueMarkdown
+    },
     data() {
       const columns = [
         { type: "expand",

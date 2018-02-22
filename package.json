@@ -13,6 +13,7 @@
     "selectize": "^0.12.4",
     "vue": "^2.5.13",
     "vue-loader": "^13.7.0",
+    "vue-markdown": "^2.2.4",
     "vue-template-compiler": "^2.5.13"
   },
   "devDependencies": {

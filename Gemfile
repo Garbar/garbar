@@ -41,3 +41,6 @@ end
 gem 'figaro'
 gem 'faraday'
 gem "annotate"
+gem "reform"
+gem "reform-rails"
+gem 'rails-bootstrap-markdown'
