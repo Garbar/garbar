@@ -15,7 +15,8 @@
 #
 
 class Movie < ApplicationRecord
-  enum status: [:na, :on_air, :dead, :pause] 
+  validates :imdb_id, uniqueness: true
+  enum status: [:indefined, :on_air, :dead, :pause] 
 
   has_one :note, dependent: :destroy
   has_many :country_movies, dependent: :destroy

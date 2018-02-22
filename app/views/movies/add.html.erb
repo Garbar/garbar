@@ -1,3 +1,7 @@
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %> role="alert""><%= value %></div>
+<% end %>
+<div class="container">
 <%= form_tag '/movies/new', method: "get" do %>
   <div class="text-center mb-4">
     <h1 class="h3 mb-3 font-weight-normal">Add TV show</h1>
@@ -18,3 +22,4 @@
 </fieldset>
 <button type="submit" class="btn btn-lg btn-primary btn-block">Search</button>
 <% end %>
+</div>
