@@ -1,17 +1,12 @@
+<h1>Editing TV Show</h1>
 <div class="container">
-<%= p @parser %>
-# TODO add selects and checks errors
-<% if @parser[:error] %>
-  <h3 class="errors">Sorry, but your data not relevant.</h6>
-  <%= link_to 'Try again', add_movies_path, class: 'btn btn-primary btn-lg btn-danger' %>
-<% else %>
  <%= form_for @form do |form| %>
     <div class="text-center mb-4">
-      <h1 class="h3 mb-3 font-weight-normal">Add TV show</h1>
+      <h1 class="h3 mb-3 font-weight-normal">Edit TV show</h1>
     </div>
     <fieldset class="form-group">
       <label for="imdb_id">Imdb Id</label>
-      <%= form.text_field :imdb_id, value: @parser[:imdb_id], class: 'form-control' %>
+      <%= form.text_field :imdb_id, class: 'form-control' %>
       </fieldset>
     <fieldset class="form-group">
       <label for="status">Status</label>
@@ -20,32 +15,32 @@
     </fieldset>
     <fieldset class="form-group">
       <label for="first_name">Title</label>
-      <%= form.text_field(:title, value: @parser[:title], class: 'form-control') %>
+      <%= form.text_field(:title, class: 'form-control') %>
     </fieldset>
     <fieldset class="form-group">
       <label for="last_name">Years of show</label>
-      <%= form.text_field :years, value: @parser[:year], class: 'form-control' %>
+      <%= form.text_field :years, class: 'form-control' %>
     </fieldset>
     <div class="row">
   <div class="col">
     <fieldset class="form-group">
       <label for="last_name">Genres of show</label>
-      <%= form.select :genre_ids, Genre.all.pluck(:title, :id), {include_blank: false, include_hidden: false, selected: @parser[:genres]}, { multiple: true, class: "selectize"} %>
+      <%= form.select :genre_ids, Genre.all.pluck(:title, :id), {include_blank: false, include_hidden: false}, { multiple: true, class: "selectize"} %>
     </fieldset>
     </div>
      <div class="col">
     <fieldset class="form-group">
       <label for="last_name">Countries</label>
-      <%= form.select :country_ids, Country.all.pluck(:title, :id), {include_blank: false, include_hidden: false, selected: @parser[:country]}, { multiple: true, class: "selectize" } %>
+      <%= form.select :country_ids, Country.all.pluck(:title, :id), {include_blank: false, include_hidden: false}, { multiple: true, class: "selectize" } %>
     </fieldset>
     </div></div>
     <fieldset class="form-group">
       <label for="last_name">Actors</label>
-      <%= form.text_area :actors, value: @parser[:actors], class: 'form-control' %>
+      <%= form.text_area :actors, class: 'form-control' %>
     </fieldset>
     <fieldset class="form-group">
       <label for="last_name">Description</label>
-      <%= form.text_area :description, value: @parser[:plot], rows: 5, class: 'form-control' %>
+      <%= form.text_area :description, rows: 5, class: 'form-control' %>
     </fieldset>
     <h3 class="note">My notes</h3>
     <%= form.fields_for :note do |a| %>
@@ -70,9 +65,5 @@
       </div>
     <% end %>
     <button type="submit" class="btn btn-lg btn-primary btn-block">Save TV show</button>
-    <h4>OR</h4>
-    <%= link_to 'Try again', add_movies_path, class: 'btn btn-primary btn-lg btn-danger' %>
   <% end %>
-<% end %>
 </div>
-<%= debug(params) if Rails.env.development? %>

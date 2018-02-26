@@ -4,6 +4,7 @@
         <p class="details"><strong>Years:</strong> {{ props.row.years }}</p>
         <p class="details"><strong>Actors:</strong> {{ props.row.actors }}</p>
         <p class="details"><strong>My notes:</strong><vue-markdown> {{ props.row.note.description }}</vue-markdown></p>
+        <p class="details"><strong>Characters:</strong><vue-markdown> {{ props.row.note.characters}}</vue-markdown></p>
       </template>
       <template slot-scope="scope" slot="genres-slot">
         <el-tag
@@ -18,6 +19,10 @@
           :key="tag.title">
           {{tag.title}}
         </el-tag>
+      </template>
+      <template slot-scope="scope" slot="operate-slot">
+        <a v-bind:href="'movies/'+scope.row.id+''">View</a>
+        <a v-bind:href="'movies/'+scope.row.id+'/edit'">Edit</a>
       </template>
   </el-table-wrapper>
 </template>
@@ -64,8 +69,16 @@
         },
         { label: "Status",
           prop: "status",
+          width: 100
+        },
+        { label: "Bechdel's test",
+          prop: "note.bechdel",
+          width: 100
+        },
+        { label: "Operations",
+          scopedSlot: 'operate-slot',
           width: 150
-        }
+        },
       ];
 
       const items = [];
@@ -85,7 +98,10 @@
       };
     },
     methods: {
-
+      handleEdit(index, row) {
+        console.log(index, row);
+        // window.location.href = "/movies/22/edit"
+      },
     },
     onPageSizeChange(size) {
       console.log('onPageSizeChange, size:', size)
@@ -96,7 +112,7 @@
     created() {
       axios.get(`/movies.json`)
       .then(response => {
-        console.log(response.data);
+        // console.log(response.data);
         this.items = response.data
       })
       .catch(e => {
