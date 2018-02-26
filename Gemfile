@@ -43,4 +43,4 @@ gem 'faraday'
 gem "annotate"
 gem "reform"
 gem "reform-rails"
-gem 'rails-bootstrap-markdown'
+gem 'trix'

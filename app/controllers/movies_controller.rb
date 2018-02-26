@@ -1,8 +1,6 @@
 class MoviesController < ApplicationController
   def index
     @movies = Movie.includes(:genres, :countries, :note)
-    # json_response(@movies)
-    # render json: @movies
     respond_to do |format|
       format.html
       format.json { render json: @movies.to_json(:include =>[ :genres, :countries, :note]) }
@@ -27,6 +25,10 @@ class MoviesController < ApplicationController
     
   end
 
+  def show
+    @movie = Movie.find(params[:id])
+  end
+
   def create
     movie = Movie.new
     movie.build_note
@@ -37,6 +39,25 @@ class MoviesController < ApplicationController
     else
       render :new
     end  
+  end
+
+  def edit
+    # Using composition form
+    movie = Movie.find(params[:id])
+    note = movie.note
+    @form = MovieForm.new(movie)
+  end
+
+  def update
+    movie = Movie.find(params[:id])
+    note = movie.note
+    @form = MovieForm.new(movie)
+    if @form.validate(params[:movie])
+      @form.save
+      redirect_to root_path
+    else
+      render :new, alert: 'Errors Found'
+    end
   end
 
   private
