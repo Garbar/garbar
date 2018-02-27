@@ -12,6 +12,7 @@
 #
 
 class Note < ApplicationRecord
+  #TODO edit enum views
   belongs_to :movie
   enum bechdel: [:indefined, :yes, :no]
 end

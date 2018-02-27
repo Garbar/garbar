@@ -15,6 +15,7 @@
 #
 
 class Movie < ApplicationRecord
+  #TODO edit enum views
   validates :imdb_id, uniqueness: true
   enum status: [:indefined, :on_air, :dead, :pause] 
 
