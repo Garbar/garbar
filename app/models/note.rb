@@ -13,6 +13,6 @@
 
 class Note < ApplicationRecord
   #TODO edit enum views
-  belongs_to :movie
+  belongs_to :movie, dependent: :destroy
   enum bechdel: [:indefined, :yes, :no]
 end

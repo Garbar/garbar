@@ -1,3 +1,60 @@
-<div class="container">
-  <h1>TV Show <%= @movie.title %></h1>
+<div class="container-fluid">
+  <h1> <%= @movie.title %></h1>
+  <div class="row">
+    <div class="col-sm-3">
+      <%= image_tag @movie.poster %>
+    </div>
+    <div class="col-sm-9">
+      <div class="row">
+        <div class="col-sm-3">
+          <p>Status</p>
+        </div>
+        <div class="col-sm-9">
+          <p><%= @movie.status %></p>
+        </div>
+        <div class="col-sm-3">
+          <p>Years</p>
+        </div>
+        <div class="col-sm-9">
+          <p><%= @movie.years %></p>
+        </div>
+        <div class="col-sm-3">
+          <p>Actors</p>
+        </div>
+        <div class="col-sm-9">
+          <p><%= @movie.actors %></p>
+        </div>
+        <div class="col-sm-3">
+          <p>Genres</p>
+        </div>
+        <div class="col-sm-9">
+          <p><%= @movie.genres.map{|p| p.title}.join(", ") %></p>
+        </div>
+        <div class="col-sm-3">
+          <p>Countries</p>
+        </div>
+        <div class="col-sm-9">
+          <p><%= @movie.countries.map{|p| p.title}.join(", ") %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+     <p> <h3>Description</h3></p>
+       <div class="row">
+        <div class="col">
+          <p><%= @movie.description %></p>
+        </div>
+      </div>
+      <h3>My notes</h3>
+      <div class="row">
+        <div class="col">
+          <p><%= @movie.note.description %></p>
+          <p><%= @movie.note.characters %></p>
+        </div>
+      </div>
+  </div>
 </div>
+
+
+

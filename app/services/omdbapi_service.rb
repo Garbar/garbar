@@ -55,7 +55,8 @@ class OmdbapiService
         actors: res['Actors'],
         plot: res['Plot'],
         country: CreateCountry.new(res['Country']).call,
-        imdb_id: res['imdbID']
+        imdb_id: res['imdbID'],
+        poster: res['Poster']
       }
     end
     movie
