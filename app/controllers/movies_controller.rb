@@ -64,8 +64,10 @@ class MoviesController < ApplicationController
   ##############################################################################
   
   def movie_params
-    params.require(:movie).permit(:title, :description, :imdb_id, :status, :years,
-    :actors, { note_attributes: [:_destroy, :description, :bechdel, :characters], country_ids:[], genre_ids:[] })
+    params.require(:movie).permit(:title, :description, :imdb_id, :status,
+    :years, :poster, :actors,
+    { note_attributes:
+    [:_destroy, :description, :bechdel, :characters], country_ids:[], genre_ids:[] })
   end
 
   def json_response(object, status = :ok)

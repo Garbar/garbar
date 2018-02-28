@@ -5,6 +5,7 @@ class MovieForm < Reform::Form
   property :imdb_id, validates: {unique: true}
   property :description
   property :years
+  property :poster
   property :actors
   property :status
   property :genre_ids
