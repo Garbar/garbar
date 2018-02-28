@@ -3,10 +3,12 @@
 </td>
 <td>
   <%= form_for(user) do |f| %>
-    <%= f.select(:role, User.roles.keys.map {|role| [role.titleize,role]}) %>
-    <%= f.submit 'Change Role', :class => 'button-xs' %>
+  <div class="btn-group btn-group-toggle" data-toggle="buttons">
+    <%= f.select(:role, User.roles.keys.map {|role| [role.titleize,role]}, {}, { :class => 'form-control' }) %>
+    <%= f.submit 'Change Role', :class => 'btn btn-outline-secondary' %>
+    </div>
   <% end %>
 </td>
 <td>
-  <%= link_to("Delete user", user_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'button-xs') unless user == current_user %>
+  <%= link_to("Delete user", user_path(user), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'btn btn-outline-secondary') unless user == current_user %>
 </td>

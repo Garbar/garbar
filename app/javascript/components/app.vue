@@ -70,6 +70,8 @@
                     {"text": "mystery", "value": "mystery"},
                     {"text": "thriller", "value": "thriller"},
                     {"text": "sci-fi", "value": "sci-fi"},
+                    {"text": "adventure", "value": "adventure"},
+                    {"text": "action", "value": "action"},
                     ],
           filterMethod: this.filterGenres,
           scopedSlot: 'genres-slot'

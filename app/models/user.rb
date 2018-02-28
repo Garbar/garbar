@@ -8,10 +8,6 @@ class User < ApplicationRecord
   after_initialize :set_default_role, :if => :new_record?
 
   def set_default_role
-    if  User.count == 1
-      self.role ||= :admin
-    else
-      self.role ||= :user
-    end
+    self.role ||= :user
   end
 end

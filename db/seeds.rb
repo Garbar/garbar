@@ -8,6 +8,7 @@
 imdb_list = %w(tt2487938 tt2819924 tt1936532 tt1129398 tt2294189 tt2396135
               tt1693592 tt1652216 tt1888075 tt1119644 tt0362357 )
 
+User.first.update_attribute(:role, 1)             
 Note.delete_all
 GenreMovie.delete_all
 CountryMovie.delete_all

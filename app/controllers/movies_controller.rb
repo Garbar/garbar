@@ -1,6 +1,6 @@
 class MoviesController < ApplicationController
   def index
-    @movies = Movie.includes(:genres, :countries, :note)
+    @movies = Movie.includes(:genres, :countries, :note).order(updated_at: :desc)
     respond_to do |format|
       format.html
       format.json { render json: @movies.to_json(:include =>[ :genres, :countries, :note]) }
