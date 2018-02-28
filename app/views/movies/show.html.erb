@@ -42,7 +42,7 @@
           <p>Description</p>
         </div>
         <div class="col-sm-9">
-          <p><%= @movie.description %></p>
+          <p><%= raw @movie.description %></p>
         </div>
       </div>
     </div>
@@ -51,11 +51,11 @@
     <div class="card-header">My Notes</div>
     <div class="card-body">
       <h4 class="card-title">Description</h4>
-      <p class="card-text"><%= @movie.note.description %></p>
+      <p class="card-text"><%= raw @movie.note.description %></p>
     </div>
     <div class="card-body">
       <h4 class="card-title">Women's characters</h4>
-      <p class="card-text"><%= @movie.note.characters %></p>
+      <p class="card-text"><%= raw @movie.note.characters %></p>
     </div>
   </div>
 </div>
