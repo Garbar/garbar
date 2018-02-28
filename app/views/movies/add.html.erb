@@ -1,25 +1,23 @@
-<% flash.each do |key, value| %>
-  <div class="alert alert-<%= key %> role="alert""><%= value %></div>
-<% end %>
 <div class="container">
-<%= form_tag '/movies/new', method: "get" do %>
-  <div class="text-center mb-4">
-    <h1 class="h3 mb-3 font-weight-normal">Add TV show</h1>
-  </div>
-  <fieldset class="form-group">
-<label for="imdb_id">Imdb Id <small>(example: tt0364845)</small></label>
- <%= text_field_tag :imdb_id, nil, class: 'form-control' %>
-<span id="helpAccountId" class="form-text text-muted">If you don't know imdb, search with title.</span>
-</fieldset>
+  <%= form_tag '/movies/new', method: "get" do %>
+    <div class="text-center mb-4">
+      <h1 class="h3 mb-3 font-weight-normal">Add TV show</h1>
+    </div>
+    <fieldset class="form-group">
+      <label for="imdb_id">Imdb Id <small>(example: tt0364845)</small></label>
+      <%= text_field_tag :imdb_id, nil, class: 'form-control' %>
+      <span id="helpAccountId" class="form-text text-muted">If you don't know imdb, search with title.</span>
+    </fieldset>
 
-<fieldset class="form-group">
-<label for="first_name">Title</label>
-<%= text_field_tag :title, nil, class: 'form-control' %>
-</fieldset>
-<fieldset class="form-group">
-<label for="last_name">Years of show</label>
-<%= text_field_tag :years, nil, class: 'form-control' %>
-</fieldset>
-<button type="submit" class="btn btn-lg btn-primary btn-block">Search</button>
-<% end %>
+    <fieldset class="form-group">
+      <label for="first_name">Title</label>
+      <%= text_field_tag :title, nil, class: 'form-control' %>
+    </fieldset>
+
+    <fieldset class="form-group">
+      <label for="last_name">Years of show</label>
+      <%= text_field_tag :years, nil, class: 'form-control' %>
+    </fieldset>
+    <button type="submit" class="btn btn-lg btn-primary btn-block">Search</button>
+  <% end %>
 </div>

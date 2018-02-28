@@ -5,6 +5,7 @@ class MoviesController < ApplicationController
       format.html
       format.json { render json: @movies.to_json(:include =>[ :genres, :countries, :note]) }
     end   
+    authorize @movies
   end
 
   def new
@@ -19,14 +20,16 @@ class MoviesController < ApplicationController
     movie.build_note
     @form = MovieForm.new(movie)
     @parser = OmdbapiService.new(params).call
+    authorize @form
   end
 
   def add
-    
+    authorize Movie
   end
 
   def show
     @movie = Movie.find(params[:id])
+    authorize @movie
   end
 
   def create
@@ -39,6 +42,7 @@ class MoviesController < ApplicationController
     else
       render :new
     end  
+    authorize @form
   end
 
   def edit
@@ -46,6 +50,7 @@ class MoviesController < ApplicationController
     movie = Movie.find(params[:id])
     note = movie.note
     @form = MovieForm.new(movie)
+    authorize @form
   end
 
   def update
@@ -58,6 +63,7 @@ class MoviesController < ApplicationController
     else
       render :new, alert: 'Errors Found'
     end
+    authorize @form
   end
 
   private
@@ -68,9 +74,5 @@ class MoviesController < ApplicationController
     :years, :poster, :actors,
     { note_attributes:
     [:_destroy, :description, :bechdel, :characters], country_ids:[], genre_ids:[] })
-  end
-
-  def json_response(object, status = :ok)
-    render json: object, status: status
   end
 end

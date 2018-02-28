@@ -44,3 +44,5 @@ gem "annotate"
 gem "reform"
 gem "reform-rails"
 gem 'trix'
+gem 'devise'
+gem 'pundit'
