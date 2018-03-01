@@ -12,7 +12,17 @@
 #
 
 class Note < ApplicationRecord
-  #TODO edit enum views
+  attribute :pretty_bechdel, :string
   belongs_to :movie, dependent: :destroy
   enum bechdel: [:indefined, :yes, :no]
+
+  def pretty_bechdel
+    if self.indefined?
+      'N/A'
+    elsif self.yes?
+      'Yes'
+    else
+      'No'
+    end
+  end 
 end

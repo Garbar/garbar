@@ -15,6 +15,7 @@
 #
 
 class Movie < ApplicationRecord
+  attribute :pretty_status, :string
   #TODO edit enum views
   validates :imdb_id, uniqueness: true
   enum status: [:indefined, :on_air, :dead, :pause] 
@@ -24,4 +25,16 @@ class Movie < ApplicationRecord
   has_many :countries, through: :country_movies
   has_many :genre_movies, dependent: :destroy
   has_many :genres, through: :genre_movies
+
+  def pretty_status
+    if self.indefined?
+      'N/A'
+    elsif self.on_air?
+      'On Air'
+    elsif self.dead?
+      'Dead'
+    else
+      'Pause'
+    end
+  end  
 end

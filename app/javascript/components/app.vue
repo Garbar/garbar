@@ -1,28 +1,29 @@
 <template>
   <el-table-wrapper border="" stripe="" :data="items" :columns="columns" :pagination="pagination" :show-custom-header="true">
       <template slot-scope="props" slot="details-slot">
+        <p class="details"><strong>Status:</strong> {{ props.row.pretty_status }}</p>
         <p class="details"><strong>Years:</strong> {{ props.row.years }}</p>
         <p class="details"><strong>Actors:</strong> {{ props.row.actors }}</p>
         <p class="details"><strong>My notes:</strong><vue-markdown> {{ props.row.note.description }}</vue-markdown></p>
         <p class="details"><strong>Characters:</strong><vue-markdown> {{ props.row.note.characters}}</vue-markdown></p>
       </template>
       <template slot-scope="scope" slot="genres-slot">
-        <el-tag
+        <el-tag type="info"
           v-for="tag in scope.row.genres"
           :key="tag.title">
           {{tag.title}}
         </el-tag>
       </template>
       <template slot-scope="scope" slot="countries-slot">
-        <el-tag
+        <el-tag type="info"
           v-for="tag in scope.row.countries"
           :key="tag.title">
           {{tag.title}}
         </el-tag>
       </template>
-      <template slot-scope="scope" slot="status-slot">
-        <el-tag :type="scope.row.status === 'dead' ? 'info' : 'success'" close-transition="">
-          {{scope.row.status}}
+      <template slot-scope="scope" slot="test-slot">
+        <el-tag :type="scope.row.note.pretty_bechdel === 'Yes' ? 'success' : 'warning'" close-transition="">
+          {{scope.row.note.pretty_bechdel}}
         </el-tag>
       </template>
       <template slot-scope="scope" slot="operate-slot">
@@ -90,14 +91,10 @@
                     ],
           filterMethod: this.filterCountries,
         },
-        { label: "Status",
-          prop: "status",
-          width: 100,
-          scopedSlot: 'status-slot'
-        },
         { label: "Bechdel's test",
-          prop: "note.bechdel",
-          width: 100
+          prop: "note.pretty_bechdel",
+          width: 100,
+          scopedSlot: 'test-slot'
         },
         { label: "Operations",
           scopedSlot: 'operate-slot',
