@@ -7,6 +7,9 @@
         <p class="details"><strong>My notes:</strong><vue-markdown> {{ props.row.note.description }}</vue-markdown></p>
         <p class="details"><strong>Characters:</strong><vue-markdown> {{ props.row.note.characters}}</vue-markdown></p>
       </template>
+      <template slot-scope="scope" slot="desc-slot">
+        <p><vue-markdown> {{ scope.row.description}}</vue-markdown></p>
+      </template>
       <template slot-scope="scope" slot="genres-slot">
         <el-tag type="info"
           v-for="tag in scope.row.genres"
@@ -59,7 +62,8 @@
           sortable: true
         },
         { label: "Description",
-          prop: "description"
+          prop: "description",
+          scopedSlot: 'desc-slot'
         },
         { label: "Genres",
           prop: "genres",
@@ -87,6 +91,12 @@
                     {"text": "sweden", "value": "sweden"},
                     {"text": "uk","value": "uk" },
                     { "text": "canada", "value": "canada"},
+                    { "text": "denmark", "value": "denmark"},
+                    { "text": "new zealand", "value": "new zealand"},
+                    { "text": "ireland", "value": "ireland"},
+                    { "text": "spain", "value": "spain"},
+                    { "text": "belgium", "value": "belgium"},
+                    { "text": "norway", "value": "norway"},
                     { "text": "australia", "value": "australia"}
                     ],
           filterMethod: this.filterCountries,
